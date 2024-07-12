@@ -1,0 +1,3 @@
+[submodule "notion-db-fetcher"]
+	path = notion-db-fetcher
+	url = https://github.com/Collaborative-Software-Development-Club/notion-db-fetcher
