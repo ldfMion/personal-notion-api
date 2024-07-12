@@ -1,36 +1,22 @@
 // src/index.js
 import express, { Express, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
-import assert from "assert";
+import verifyToken from "./auth";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 4000;
 
-function verifyToken(req: Request, res: Response, next: NextFunction) {
-	const token: string | undefined = process.env.TOKEN;
-	assert(token != undefined);
-	if (getAuthKey(req) !== token) {
-		throw new Error("Invalid token");
-	}
-	next();
-}
-
-function getAuthKey(req: Request): string | undefined {
-	const authField = req.headers.authorization;
-	if (!authField) {
-		return undefined;
-	}
-	const key = authField.split(" ")[1];
-	return key;
-}
-
-app.use(verifyToken);
+app.use("/", verifyToken);
 
 app.get("/", (req: Request, res: Response) => {
 	console.log(req.body);
 	res.send("Personal Notion API");
+});
+
+app.get("/today", (req: Request, res: Response) => {
+	res.send(["clean the dishes", "read 10 pages"]);
 });
 
 app.listen(port, () => {
