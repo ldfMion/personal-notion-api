@@ -11,8 +11,7 @@ const verifyToken: RequestHandler = (
 	const key = getAuthKey(req);
 	if (key == undefined) {
 		res.status(401).send("No token provided");
-	}
-	if (getAuthKey(req) !== token) {
+	} else if (getAuthKey(req) !== token) {
 		res.status(403).send("Invalid token");
 	}
 	next();
