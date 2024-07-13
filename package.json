@@ -4,8 +4,8 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"build": "npx tsx",
-		"vercel-build": "npx tsx",
+		"build": "tsc",
+		"vercel-build": "tsc",
 		"start": "node dist/index.js",
 		"dev": "npx tsx api/index.ts"
 	},
