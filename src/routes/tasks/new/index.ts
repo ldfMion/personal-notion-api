@@ -4,7 +4,8 @@ import assert from "assert";
 import addPageToDatabase, {
 	PageProperties,
 } from "../../../helpers/addPageToDatabase";
-import parseTaskPrompt from "./parseTagPrompt";
+import parseTaskPrompt from "./parseTaskPrompt";
+import getPrompt from "../../../helpers/getPrompt";
 
 dotenv.config();
 
@@ -24,13 +25,6 @@ router.post("/", async (req: Request, res: Response) => {
 		return;
 	}
 });
-
-function getPrompt(req: Request): string | undefined {
-	if (req.body == undefined || req.body.prompt == undefined) {
-		return undefined;
-	}
-	return req.body.prompt;
-}
 
 async function addTaskToNotion(
 	prompt: string
